@@ -1,9 +1,7 @@
 
 import discord
-
-TOKEN = 'Njg5OTg5MjQ0NjYzNjI4MDMx.XnLG2w.VloRYkz0Zx7C9Mc5yZlLZ9-kC7s'
-GUILD = 'test server'
-
+file=open('token.txt','r')
+TOKEN = file.readline()
 client = discord.Client()
 
 @client.event
@@ -20,6 +18,8 @@ async def on_message(message):
     if message.author == client.user:
         return
 
-    if message.content.startswith('$hello'):
-        await message.channel.send('Hello World!')
+    if message.content.startswith('/'):
+        if message.content.startswith('/help'):
+           await message.channel.send('help')
+
 client.run(TOKEN)
